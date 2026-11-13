@@ -1,13 +1,13 @@
 import sqlite3
 
 class DatabaseHandler:
-    def __init__(self):
-        self.conn = sqlite3.connect("../Data/Database.sqlite")
+    def __init__(self,path_to_db):
+        self.conn = sqlite3.connect(path_to_db)
 
     def CreateTable(self):
             cursor = self.conn.cursor();
 
-            create_table = "CREATE TABLE IF NOT EXISTS GYMATTENDANCE(Data date CHECK(Data <= current_date) );"
+            create_table = "CREATE TABLE IF NOT EXISTS GYMATTENDANCE(Data date);"
 
             cursor.execute(create_table);
 
@@ -38,12 +38,5 @@ class DatabaseHandler:
 
 
 
-#scurt test
-db = DatabaseHandler()
-db.CreateTable()
-db.InsertDate(" '2006-11-22' ")         #YYYY-MM-DD format 
-db.InsertDate(" '2026-09-23' ")
-db.DeleteRow(" '2006-11-22' ")
-db.CloseDb()
 
 ## SOURCE: https://www.sqlitetutorial.net/sqlite-python/creating-database/
